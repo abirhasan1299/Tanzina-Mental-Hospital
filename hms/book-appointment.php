@@ -115,6 +115,19 @@ function getEXPERIENCE(val) {
 	});
 }
 </script>
+        <script>
+            function getTime(val) {
+                //alert('i am here');
+                $.ajax({
+                    type: "POST",
+                    url: "get_time.php",
+                    data:'doctor='+val,
+                    success: function(data){
+                        $("#time").html(data);
+                    }
+                });
+            }
+        </script>
 
 
 
@@ -189,7 +202,7 @@ while($row=mysqli_fetch_array($ret))
 															<label for="doctor">
 																Doctors
 															</label>
-						<select name="doctor" class="form-control" id="doctor" onChange="getfee(this.value);"  onClick="getEXPERIENCE(this.value);" required="required">
+						<select name="doctor" class="form-control" id="doctor" onChange="getfee(this.value);getTime(this.value);"  onClick="getEXPERIENCE(this.value);" required="required">
 						<option value="">Select Doctor</option>
 						</select>
 														</div>
@@ -230,7 +243,9 @@ while($row=mysqli_fetch_array($ret))
 														Time
 													
 															</label>
-			<input class="form-control" name="apptime" id="timepicker1" required="required">eg : 10:00 PM
+    <select name="apptime" class="form-control" id="time">
+
+    </select>
 														</div>
 
                                     <button type="submit" name="submit" class="btn btn-primary" >

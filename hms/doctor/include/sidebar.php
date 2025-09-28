@@ -72,6 +72,18 @@
 									</div>
 								</a>
 							</li>
+                            <li>
+                                <a href="time.php">
+                                    <div class="item-content">
+                                        <div class="item-media">
+                                            <i class="ti-time"></i>
+                                        </div>
+                                        <div class="item-inner">
+                                            <span class="title">Time Availablity </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
 
 						</ul>
 						<!-- end: CORE FEATURES -->

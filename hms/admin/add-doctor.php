@@ -1,13 +1,14 @@
 <?php
 session_start();
-error_reporting(0);
+//error_reporting(0);
 include('include/config.php');
 if(strlen($_SESSION['id']==0)) {
  header('location:logout.php');
   } else{
 
 if(isset($_POST['submit']))
-{	$docspecialization=$_POST['Doctorspecialization'];
+{
+$docspecialization=$_POST['Doctorspecialization'];
 $docname=$_POST['docname'];
 $docaddress=$_POST['clinicaddress'];
 $docfees=$_POST['docfees'];
@@ -16,7 +17,41 @@ $docemail=$_POST['docemail'];
 $experience=$_POST['experience'];
 //var_dump($experience);die();
 $password=md5($_POST['npass']);
-$sql=mysqli_query($con,"insert into doctors(specilization,doctorName,address,docFees,contactno,experience,docEmail,password) values('$docspecialization','$docname','$docaddress','$docfees','$doccontactno','$experience','$docemail','$password')");
+    $newFileName = '';
+//file upload
+    if (isset($_FILES['certificate'])) {
+
+        // Allowed file type
+        $allowedType = 'application/pdf';
+
+        // File details
+        $fileTmpPath = $_FILES['certificate']['tmp_name'];
+        $fileName = $_FILES['certificate']['name'];
+        $fileSize = $_FILES['certificate']['size'];
+        $fileType = $_FILES['certificate']['type'];
+
+        // Destination folder (make sure it exists and is writable)
+        $uploadFolder = "../uploads/";
+        if (!is_dir($uploadFolder)) {
+            mkdir($uploadFolder, 0777, true);
+        }
+
+        // Validate file type
+        if ($fileType === $allowedType) {
+            // Rename file to avoid conflicts
+            $newFileName = uniqid() . "_" . basename($fileName);
+            $destPath = $uploadFolder . $newFileName;
+
+            if (move_uploaded_file($fileTmpPath, $destPath)) {
+                echo "✅ File uploaded successfully: " . $newFileName;
+            } else {
+                die('❌ Error moving the uploaded file.');
+            }
+        }else{
+            die('Only pdf file allowed');
+        }
+    }
+$sql=mysqli_query($con,"insert into doctors(specilization,doctorName,address,docFees,contactno,experience,docEmail,password,certificate) values('$docspecialization','$docname','$docaddress','$docfees','$doccontactno','$experience','$docemail','$password','$newFileName')");
 if($sql)
 {
 echo "<script>alert('Doctor info added Successfully');</script>";
@@ -114,7 +149,7 @@ error:function (){}
 												</div>
 												<div class="panel-body">
 									
-													<form role="form" name="adddoc" method="post" onSubmit="return valid();">
+													<form role="form" name="adddoc" method="post" onSubmit="return valid();" enctype="multipart/form-data">
 														<div class="form-group">
 															<label for="DoctorSpecialization">
 																Doctor Specialization
@@ -199,6 +234,13 @@ while($row=mysqli_fetch_array($ret))
 															</label>
 									<input type="password" name="cfpass" class="form-control"  placeholder="Confirm Password" required="required">
 														</div>
+
+                                                        <div class="form-group">
+                                                            <label for="certificate">
+                                                                Upload Certificate*
+                                                            </label>
+                                                            <input type="file" name="certificate" class="form-control" accept="application/pdf">
+                                                        </div>
 														
 														
 														

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 26, 2025 at 06:09 PM
+-- Generation Time: Sep 28, 2025 at 03:55 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -95,7 +95,9 @@ INSERT INTO `appointment` (`id`, `doctorSpecialization`, `doctorId`, `userId`, `
 (62, 'Orthopedics', 8, 4, 500, '2024-05-30', '7:00 PM', '2024-05-28 12:57:07', 1, 1, NULL),
 (63, 'Neurologists', 46, 13, 700, '2025-09-25', '11:30 AM', '2025-09-25 05:58:05', 1, 1, NULL),
 (64, 'ENT', 53, 13, 1500, '2025-09-26', '12:45 PM', '2025-09-25 06:36:17', 1, 1, NULL),
-(65, 'Dermatology', 11, 13, 1300, '2025-09-30', '12:00 PM', '2025-09-26 18:00:07', 0, 1, '2025-09-26 18:00:18');
+(65, 'Dermatology', 11, 13, 1300, '2025-09-30', '12:00 PM', '2025-09-26 18:00:07', 0, 1, '2025-09-26 18:00:18'),
+(66, 'General Surgery', 54, 13, 200, '2025-09-30', '10:00 PM', '2025-09-27 15:51:01', 1, 1, NULL),
+(67, 'ENT', 53, 13, 1500, '2025-09-28', '1', '2025-09-28 03:47:39', 1, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -116,60 +118,63 @@ CREATE TABLE `doctors` (
   `password` varchar(255) DEFAULT NULL,
   `creationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updationDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `status` varchar(255) DEFAULT NULL
+  `status` varchar(255) DEFAULT NULL,
+  `certificate` varchar(1000) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `doctors`
 --
 
-INSERT INTO `doctors` (`id`, `specilization`, `doctorName`, `experience`, `address`, `docFees`, `doctors_address`, `contactno`, `docEmail`, `password`, `creationDate`, `updationDate`, `status`) VALUES
-(8, 'Orthopedics', 'Towhid', '2 Years++ MBBS in(orthopedics)FCPS(RUNNING)', 'Uttara', '500', NULL, 1984275821, 'towhid@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-19 20:43:48', '2024-05-27 18:24:06', NULL),
-(9, 'Internal Medicine', 'Hafizur Rahman', '5 Years experience MBBS(Medicine)', 'Purbachal', '800', NULL, 2431454353, 'hafiz@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-19 20:44:23', '2024-05-27 18:27:25', NULL),
-(10, 'Obstetrics and Gynecology', 'Mirza ', '3 Years++\nFCPS(Last year)', 'Mirpur', '1300', NULL, 1310943286, 'mirza@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-19 20:45:32', '2024-05-27 18:28:46', NULL),
-(11, 'Dermatology', 'Hanif Haldar', '3 Years MBBS in(Dermatology)', 'Chittagong', '1300', NULL, 1310943286, 'hanif@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-19 20:46:23', '2024-05-27 18:25:05', NULL),
-(12, 'General Surgery', 'abdullah', '3 Years ++\nMBBS(surgery)', 'horinpara', '380', NULL, 11111111111111, 'abdullah@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-19 23:30:15', '2024-05-27 18:28:14', NULL),
-(13, 'Dental Care', 'rahat', '3 Years ++\nMBBS', 'barishal', '1000', NULL, 115704540000, 'rahar@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-19 23:31:36', '2024-05-27 18:45:55', NULL),
-(14, 'Endocrinologists', 'riyajul', '3 Years', 'islampur', '4000', NULL, 233985767745, 'riyajul@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-19 23:33:23', '2024-05-26 08:37:18', NULL),
-(15, 'Internal Medicine', 'ubaidul ', '3 Years', 'ibne sina hospital ', '500', NULL, 121389575, 'ubaidul@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-25 07:34:33', '2024-05-26 08:37:08', NULL),
-(16, 'Pediatrics', 'jannatul ferdows', '3 Years', 'sigma clinic', '500', NULL, 12137867, 'jannatul@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-25 07:36:10', '2024-05-26 08:37:21', NULL),
-(17, 'Anesthesia', 'raabil hasan', '3 Years', 'square hospital', '500', NULL, 9808909445, 'raabil@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-25 07:37:21', '2024-05-26 08:37:33', NULL),
-(18, 'Anesthesia', 'urmi khaatun', '3 Years', 'square hospital ', '500', NULL, 9808909445, 'urmi@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-25 07:38:17', '2024-05-26 08:37:41', NULL),
-(19, 'General Surgery', 'rakib hasan', '3 Years', 'euro clinic', '500', NULL, 121389575, 'rakib@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-25 07:40:12', '2024-05-26 08:37:43', NULL),
-(20, 'Ophthalmology', 'udoy ghosh ', '3 Years', 'ahsania hospital ', '500', NULL, 3278475, 'udoy@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-25 07:41:13', '2024-05-26 08:37:35', NULL),
-(21, 'Orthopedics', 'beauti khatun ', '3 Years', 'al arfah clinic ', '500', NULL, 9808909445, 'beauti@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-25 07:42:53', '2024-05-26 08:37:46', NULL),
-(22, 'Orthopedics', 'Mitul Rahman', '5 years ', 'sherpur clinic & diagonistic center', '1400', NULL, 1918320432, 'mitul@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-26 12:52:19', '2024-05-26 13:27:02', NULL),
-(23, 'Orthopedics', 'Muktadir Rahman', '5years MBBS,FCPS(ORTHOPEDICS) ', 'square Hospital ', '500', NULL, 1111111111, 'miuktadir@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-26 12:58:18', '2024-05-26 16:26:54', NULL),
-(24, 'Neurologists', 'sobuj', '3 years++ MBBS(neurologists)', 'ibn Sina', '1200', NULL, 1984275821, 'sobuj@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 11:13:07', '2024-05-27 18:10:47', NULL),
-(25, 'Pediatrics', 'ikram', '', 'ibn Sina', '500', NULL, 1310943286, 'ikram@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 11:20:55', NULL, NULL),
-(26, 'Orthopedics', 'Sifat', '7years', 'uttara', '1400', NULL, 2431454353, 'sifat@mail.com', '25d55ad283aa400af464c76d713c07ad', '2024-05-27 11:33:50', NULL, NULL),
-(27, 'Radiology', 'jubayer alom', '3 years++ FCPS(RUNNING)', 'sherpur', '1000', NULL, 3333333555, 'jubayer@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 21:53:58', NULL, NULL),
-(28, 'Obstetrics and Gynecology', 'ritu nasrin', 'MBBS(Gynecology)', 'kalipara,mirpur', '800', NULL, 1712518810, 'ritu@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 21:56:17', NULL, NULL),
-(29, 'Anesthesia', 'rubel Hossain', 'MBBS(intern in Square)', 'barishal clinic', '300', NULL, 1843174219, 'rubel@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 21:59:22', NULL, NULL),
-(30, 'Radiology', 'liton kumar ', 'MBBS\r\n\r\n', 'york in new', '280', NULL, 1712518810, 'liton@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:03:41', NULL, NULL),
-(31, 'Endocrinologists', 'boruya dhor', '3years+ Working in Square hospital', 'savar', '700', NULL, 1918320432, 'boruya@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:05:45', NULL, NULL),
-(32, 'Dermatologists', 'kiron saha', 'MBBS', 'bogora', '200', NULL, 1712518810, 'kiron@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:07:19', NULL, NULL),
-(33, 'Neurologists', 'sumiya islam', 'FCPS(2nd part) working in janalpur ', 'kazipara', '800', NULL, 1984275821, 'sumaiya@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:09:04', NULL, NULL),
-(34, 'Pathology', 'suruj uddin ahmed', 'MD(Pathology) MBBS(Dhaka Medical College)', 'sherpur', '800', NULL, 1712518810, 'suruj@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:11:42', NULL, NULL),
-(35, 'Ophthalmology', 'dolon biswas', 'MBBS', 'mirpur', '500', NULL, 2431454353, 'dolon@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:13:23', NULL, NULL),
-(36, 'Pediatrics', 'tanvir Ahmed ', 'MBBS', 'norail clinic ', '100', NULL, 1712518810, 'tanvir@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:15:33', NULL, NULL),
-(37, 'General Surgery', 'mitu ara', 'MBBS(DMC)FCPS(LONDON)', 'kamarpara', '1400', NULL, 1310943286, 'mituara@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:17:12', NULL, NULL),
-(38, 'General Surgery', 'boirov Chowdhory', 'MBBS(surgeon) working in Mymensingh', 'Comilla', '1200', NULL, 1918320432, 'boirov@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:19:24', NULL, NULL),
-(39, 'Pediatrics', 'kazi jahir raihan', 'MBBS(Intern in ibne sina)', 'mirpur', '500', NULL, 2431454353, 'kazi@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:21:11', NULL, NULL),
-(40, 'Obstetrics and Gynecology', 'Naeem mia', 'MBBS,FCPS Working in northeast clinic', 'Chittagong', '2000', NULL, 1984275821, 'naeem@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:23:05', NULL, NULL),
-(41, 'Dermatology', 'motaleb hasan', 'MBBS(DMC)', 'sherpur', '1200', NULL, 1310943286, 'motaleb@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:24:18', NULL, NULL),
-(42, 'Ophthalmology', 'parvin nasrin', '7 YEARS ++', 'sherpur', '1200', NULL, 2431454353, 'parvin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:25:52', NULL, NULL),
-(43, 'Radiology', 'rezu iskam', 'MBBS', 'parborta jenaidoho', '1200', NULL, 1712518810, 'rezu@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:27:15', NULL, NULL),
-(44, 'Obstetrics and Gynecology', 'pranto Haque', 'FCPS(running)', 'sherpur\r\n', '1200', NULL, 1310943286, 'pranto@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:28:59', NULL, NULL),
-(45, 'Dermatologists', 'sakib Ak hasan ', 'MBBS', 'magura', '700', NULL, 1712518810, 'sakib@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:40:01', NULL, NULL),
-(46, 'Neurologists', 'Tamim Iqbal', '8+ years working in barishal clinic', 'barishal\r\n', '700', NULL, 1843174219, 'tamim@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:41:55', NULL, NULL),
-(47, 'Internal Medicine', 'Asif Rakib', 'MBBS,FCPS', 'Uk', '1000', NULL, 1712518810, 'asif@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:46:51', NULL, NULL),
-(48, 'Dermatologists', 'Abhijit SARKER', '10 years+', 'Chandpur', '1400', NULL, 1918320432, 'abhijit@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:48:30', NULL, NULL),
-(49, 'Anesthesia', 'nayan sarker ', 'MBBS', 'birulia', '1400', NULL, 2431454353, 'nayan@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:49:29', NULL, NULL),
-(50, 'Dental Care', 'mushfiq rahim', '6 Years+ working in DMC', 'rajshahi', '1400', NULL, 1918320432, 'mushfiq@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:50:58', NULL, NULL),
-(51, 'Neurologists', 'shithi saha', 'FCPS,MD(LONDON)', 'sherpur', '1400', NULL, 2431454353, 'shithi@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:52:12', NULL, NULL),
-(52, 'Neurologists', 'gipi', '5yeras', 'sherpur', '30000', NULL, 5454545454, 'gipi@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-28 09:34:33', NULL, NULL),
-(53, 'ENT', 'Abir Hasan', '5+ Years of FCPS Practical Patient Surgery', 'Dhaka,City - FarmGate: 1632', '1500', NULL, 1986557505, 'tamamabir@gmail.com', '96de5ca86452b4cf64286744d04eeaf5', '2025-09-25 06:12:32', NULL, NULL);
+INSERT INTO `doctors` (`id`, `specilization`, `doctorName`, `experience`, `address`, `docFees`, `doctors_address`, `contactno`, `docEmail`, `password`, `creationDate`, `updationDate`, `status`, `certificate`) VALUES
+(8, 'Orthopedics', 'Towhid', '2 Years++ MBBS in(orthopedics)FCPS(RUNNING)', 'Uttara', '500', NULL, 1984275821, 'towhid@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-19 20:43:48', '2024-05-27 18:24:06', NULL, NULL),
+(9, 'Internal Medicine', 'Hafizur Rahman', '5 Years experience MBBS(Medicine)', 'Purbachal', '800', NULL, 2431454353, 'hafiz@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-19 20:44:23', '2024-05-27 18:27:25', NULL, NULL),
+(10, 'Obstetrics and Gynecology', 'Mirza ', '3 Years++\nFCPS(Last year)', 'Mirpur', '1300', NULL, 1310943286, 'mirza@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-19 20:45:32', '2024-05-27 18:28:46', NULL, NULL),
+(11, 'Dermatology', 'Hanif Haldar', '3 Years MBBS in(Dermatology)', 'Chittagong', '1300', NULL, 1310943286, 'hanif@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-19 20:46:23', '2024-05-27 18:25:05', NULL, NULL),
+(12, 'General Surgery', 'abdullah', '3 Years ++\nMBBS(surgery)', 'horinpara', '380', NULL, 11111111111111, 'abdullah@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-19 23:30:15', '2024-05-27 18:28:14', NULL, NULL),
+(13, 'Dental Care', 'rahat', '3 Years ++\nMBBS', 'barishal', '1000', NULL, 115704540000, 'rahar@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-19 23:31:36', '2024-05-27 18:45:55', NULL, NULL),
+(14, 'Endocrinologists', 'riyajul', '3 Years', 'islampur', '4000', NULL, 233985767745, 'riyajul@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-19 23:33:23', '2024-05-26 08:37:18', NULL, NULL),
+(15, 'Internal Medicine', 'ubaidul ', '3 Years', 'ibne sina hospital ', '500', NULL, 121389575, 'ubaidul@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-25 07:34:33', '2024-05-26 08:37:08', NULL, NULL),
+(16, 'Pediatrics', 'jannatul ferdows', '3 Years', 'sigma clinic', '500', NULL, 12137867, 'jannatul@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-25 07:36:10', '2024-05-26 08:37:21', NULL, NULL),
+(17, 'Anesthesia', 'raabil hasan', '3 Years', 'square hospital', '500', NULL, 9808909445, 'raabil@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-25 07:37:21', '2024-05-26 08:37:33', NULL, NULL),
+(18, 'Anesthesia', 'urmi khaatun', '3 Years', 'square hospital ', '500', NULL, 9808909445, 'urmi@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-25 07:38:17', '2024-05-26 08:37:41', NULL, NULL),
+(19, 'General Surgery', 'rakib hasan', '3 Years', 'euro clinic', '500', NULL, 121389575, 'rakib@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-25 07:40:12', '2024-05-26 08:37:43', NULL, NULL),
+(20, 'Ophthalmology', 'udoy ghosh ', '3 Years', 'ahsania hospital ', '500', NULL, 3278475, 'udoy@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-25 07:41:13', '2024-05-26 08:37:35', NULL, NULL),
+(21, 'Orthopedics', 'beauti khatun ', '3 Years', 'al arfah clinic ', '500', NULL, 9808909445, 'beauti@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-25 07:42:53', '2024-05-26 08:37:46', NULL, NULL),
+(22, 'Orthopedics', 'Mitul Rahman', '5 years ', 'sherpur clinic & diagonistic center', '1400', NULL, 1918320432, 'mitul@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-26 12:52:19', '2024-05-26 13:27:02', NULL, NULL),
+(23, 'Orthopedics', 'Muktadir Rahman', '5years MBBS,FCPS(ORTHOPEDICS) ', 'square Hospital ', '500', NULL, 1111111111, 'miuktadir@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-26 12:58:18', '2024-05-26 16:26:54', NULL, NULL),
+(24, 'Neurologists', 'sobuj', '3 years++ MBBS(neurologists)', 'ibn Sina', '1200', NULL, 1984275821, 'sobuj@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 11:13:07', '2024-05-27 18:10:47', NULL, NULL),
+(25, 'Pediatrics', 'ikram', '', 'ibn Sina', '500', NULL, 1310943286, 'ikram@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 11:20:55', NULL, NULL, NULL),
+(26, 'Orthopedics', 'Sifat', '7years', 'uttara', '1400', NULL, 2431454353, 'sifat@mail.com', '25d55ad283aa400af464c76d713c07ad', '2024-05-27 11:33:50', NULL, NULL, NULL),
+(27, 'Radiology', 'jubayer alom', '3 years++ FCPS(RUNNING)', 'sherpur', '1000', NULL, 3333333555, 'jubayer@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 21:53:58', NULL, NULL, NULL),
+(28, 'Obstetrics and Gynecology', 'ritu nasrin', 'MBBS(Gynecology)', 'kalipara,mirpur', '800', NULL, 1712518810, 'ritu@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 21:56:17', NULL, NULL, NULL),
+(29, 'Anesthesia', 'rubel Hossain', 'MBBS(intern in Square)', 'barishal clinic', '300', NULL, 1843174219, 'rubel@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 21:59:22', NULL, NULL, NULL),
+(30, 'Radiology', 'liton kumar ', 'MBBS\r\n\r\n', 'york in new', '280', NULL, 1712518810, 'liton@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:03:41', NULL, NULL, NULL),
+(31, 'Endocrinologists', 'boruya dhor', '3years+ Working in Square hospital', 'savar', '700', NULL, 1918320432, 'boruya@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:05:45', NULL, NULL, NULL),
+(32, 'Dermatologists', 'kiron saha', 'MBBS', 'bogora', '200', NULL, 1712518810, 'kiron@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:07:19', NULL, NULL, NULL),
+(33, 'Neurologists', 'sumiya islam', 'FCPS(2nd part) working in janalpur ', 'kazipara', '800', NULL, 1984275821, 'sumaiya@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:09:04', NULL, NULL, NULL),
+(34, 'Pathology', 'suruj uddin ahmed', 'MD(Pathology) MBBS(Dhaka Medical College)', 'sherpur', '800', NULL, 1712518810, 'suruj@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:11:42', NULL, NULL, NULL),
+(35, 'Ophthalmology', 'dolon biswas', 'MBBS', 'mirpur', '500', NULL, 2431454353, 'dolon@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:13:23', NULL, NULL, NULL),
+(36, 'Pediatrics', 'tanvir Ahmed ', 'MBBS', 'norail clinic ', '100', NULL, 1712518810, 'tanvir@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:15:33', NULL, NULL, NULL),
+(37, 'General Surgery', 'mitu ara', 'MBBS(DMC)FCPS(LONDON)', 'kamarpara', '1400', NULL, 1310943286, 'mituara@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:17:12', NULL, NULL, NULL),
+(38, 'General Surgery', 'boirov Chowdhory', 'MBBS(surgeon) working in Mymensingh', 'Comilla', '1200', NULL, 1918320432, 'boirov@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:19:24', NULL, NULL, NULL),
+(39, 'Pediatrics', 'kazi jahir raihan', 'MBBS(Intern in ibne sina)', 'mirpur', '500', NULL, 2431454353, 'kazi@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:21:11', NULL, NULL, NULL),
+(40, 'Obstetrics and Gynecology', 'Naeem mia', 'MBBS,FCPS Working in northeast clinic', 'Chittagong', '2000', NULL, 1984275821, 'naeem@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:23:05', NULL, NULL, NULL),
+(41, 'Dermatology', 'motaleb hasan', 'MBBS(DMC)', 'sherpur', '1200', NULL, 1310943286, 'motaleb@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:24:18', NULL, NULL, NULL),
+(42, 'Ophthalmology', 'parvin nasrin', '7 YEARS ++', 'sherpur', '1200', NULL, 2431454353, 'parvin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:25:52', NULL, NULL, NULL),
+(43, 'Radiology', 'rezu iskam', 'MBBS', 'parborta jenaidoho', '1200', NULL, 1712518810, 'rezu@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:27:15', NULL, NULL, NULL),
+(44, 'Obstetrics and Gynecology', 'pranto Haque', 'FCPS(running)', 'sherpur\r\n', '1200', NULL, 1310943286, 'pranto@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:28:59', NULL, NULL, NULL),
+(45, 'Dermatologists', 'sakib Ak hasan ', 'MBBS', 'magura', '700', NULL, 1712518810, 'sakib@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:40:01', NULL, NULL, NULL),
+(46, 'Neurologists', 'Tamim Iqbal', '8+ years working in barishal clinic', 'barishal\r\n', '700', NULL, 1843174219, 'tamim@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:41:55', NULL, NULL, NULL),
+(47, 'Internal Medicine', 'Asif Rakib', 'MBBS,FCPS', 'Uk', '1000', NULL, 1712518810, 'asif@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:46:51', NULL, NULL, NULL),
+(48, 'Dermatologists', 'Abhijit SARKER', '10 years+', 'Chandpur', '1400', NULL, 1918320432, 'abhijit@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:48:30', NULL, NULL, NULL),
+(49, 'Anesthesia', 'nayan sarker ', 'MBBS', 'birulia', '1400', NULL, 2431454353, 'nayan@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:49:29', NULL, NULL, NULL),
+(50, 'Dental Care', 'mushfiq rahim', '6 Years+ working in DMC', 'rajshahi', '1400', NULL, 1918320432, 'mushfiq@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:50:58', NULL, NULL, NULL),
+(51, 'Neurologists', 'shithi saha', 'FCPS,MD(LONDON)', 'sherpur', '1400', NULL, 2431454353, 'shithi@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-27 22:52:12', NULL, NULL, NULL),
+(52, 'Neurologists', 'gipi', '5yeras', 'sherpur', '30000', NULL, 5454545454, 'gipi@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-05-28 09:34:33', NULL, NULL, NULL),
+(53, 'ENT', 'Abir Hasan', '5+ Years of FCPS Practical Patient Surgery', 'Dhaka,City - FarmGate: 1632', '1500', NULL, 1986557505, 'tamamabir@gmail.com', '96de5ca86452b4cf64286744d04eeaf5', '2025-09-25 06:12:32', NULL, NULL, NULL),
+(54, 'General Surgery', 'Tanzina Khan', '2 years in Surgery', 'America', '200', NULL, 123456789, 'tanzina@gmail.com', '97279a47336306ad51a9c9bcdd43524f', '2025-09-27 15:50:00', NULL, NULL, NULL),
+(64, 'Dental Care', 'Tanzina Khan', 'asdfdsf', 'dsafdsaf', '1500', NULL, 4543656435, 'titu@gmail.com', 'a257a91001c2575f1989948a5c923e3c', '2025-09-28 02:51:12', NULL, NULL, '68d8a2a068051_Paramedical Courses.pdf');
 
 -- --------------------------------------------------------
 
@@ -216,7 +221,14 @@ INSERT INTO `doctorslog` (`id`, `uid`, `username`, `userip`, `loginTime`, `logou
 (22, 53, 'tamamabir@gmail.com', 0x3a3a3100000000000000000000000000, '2025-09-25 06:54:44', NULL, 1),
 (23, 53, 'tamamabir@gmail.com', 0x3a3a3100000000000000000000000000, '2025-09-26 16:17:08', '26-09-2025 10:39:36 PM', 1),
 (24, 53, 'tamamabir@gmail.com', 0x3a3a3100000000000000000000000000, '2025-09-26 17:13:00', NULL, 1),
-(25, 53, 'tamamabir@gmail.com', 0x3a3a3100000000000000000000000000, '2025-09-26 17:18:21', '26-09-2025 10:56:07 PM', 1);
+(25, 53, 'tamamabir@gmail.com', 0x3a3a3100000000000000000000000000, '2025-09-26 17:18:21', '26-09-2025 10:56:07 PM', 1),
+(26, 53, 'tamamabir@gmail.com', 0x3a3a3100000000000000000000000000, '2025-09-27 09:07:41', '27-09-2025 02:38:49 PM', 1),
+(27, 53, 'tamamabir@gmail.com', 0x3a3a3100000000000000000000000000, '2025-09-27 15:36:06', '27-09-2025 09:17:28 PM', 1),
+(28, 54, 'tanzina@gmail.com', 0x3a3a3100000000000000000000000000, '2025-09-27 15:50:23', '27-09-2025 09:20:32 PM', 1),
+(29, 54, 'tanzina@gmail.com', 0x3a3a3100000000000000000000000000, '2025-09-27 15:51:21', NULL, 1),
+(30, 53, 'tamamabir@gmail.com', 0x3a3a3100000000000000000000000000, '2025-09-28 02:04:39', '28-09-2025 07:38:27 AM', 1),
+(31, 53, 'tamamabir@gmail.com', 0x3a3a3100000000000000000000000000, '2025-09-28 02:53:10', '28-09-2025 08:49:25 AM', 1),
+(32, 53, 'tamamabir@gmail.com', 0x3a3a3100000000000000000000000000, '2025-09-28 03:47:56', '28-09-2025 09:24:19 AM', 1);
 
 -- --------------------------------------------------------
 
@@ -387,7 +399,9 @@ INSERT INTO `tblpatient` (`ID`, `Docid`, `PatientName`, `PatientContno`, `Patien
 (58, 8, 'Sadik Samin', 999999999, 'sadik@gmail.com', 'male', 'Shepur, ', 33, NULL, '2024-05-28 12:57:07', NULL, 62),
 (59, 46, 'Abir', 1986557505, 'tamamabir@gmail.com', 'male', 'Shagufta Road', 21, NULL, '2025-09-25 05:58:05', NULL, 63),
 (60, 53, 'Abir', 1986557505, 'tamamabir@gmail.com', 'Male', 'Shagufta Road', 21, 'Divorced Sadness. Mental Sick.', '2025-09-25 06:36:17', '2025-09-26 17:24:55', 64),
-(61, 11, 'Abir', 1986557505, 'tamamabir@gmail.com', 'male', 'Shagufta Road', 21, NULL, '2025-09-26 18:00:07', NULL, 65);
+(61, 11, 'Abir', 1986557505, 'tamamabir@gmail.com', 'male', 'Shagufta Road', 21, NULL, '2025-09-26 18:00:07', NULL, 65),
+(62, 54, 'Abir', 1986557505, 'tamamabir@gmail.com', 'male', 'Shagufta Road', 21, NULL, '2025-09-27 15:51:01', NULL, 66),
+(63, 53, 'Abir', 1986557505, 'tamamabir@gmail.com', 'male', 'Shagufta Road', 21, NULL, '2025-09-28 03:47:39', NULL, 67);
 
 -- --------------------------------------------------------
 
@@ -410,7 +424,8 @@ CREATE TABLE `tblprescriptions` (
 INSERT INTO `tblprescriptions` (`id`, `patient_id`, `appoint_id`, `date`, `unique_code`) VALUES
 (2, 60, 64, '2025-09-26 22:23:57', '68D6BE1D0AF43'),
 (3, 60, 64, '2025-09-26 23:04:16', '68D6C790686BD'),
-(4, 60, 64, '2025-09-26 23:14:54', '68D6CA0E436C2');
+(4, 60, 64, '2025-09-26 23:14:54', '68D6CA0E436C2'),
+(5, 62, 66, '2025-09-27 21:53:27', '68D808770F678');
 
 -- --------------------------------------------------------
 
@@ -436,7 +451,30 @@ INSERT INTO `tblprescription_medicines` (`prescription_id`, `medicine_name`, `do
 ('68D6BE1D0AF43', 'Fexofenadin', '120mg', '0+0+1', '7 Days', ''),
 ('68D6C790686BD', 'Desloratadin', '5mg', '0+1+0', '7 Days', 'After Meal'),
 ('68D6CA0E436C2', 'Paracetamol', '500mg', '1+1+0', '7 Days', 'After Meal'),
-('68D6CA0E436C2', 'Desloratadin', '5mg', '1+1+1', '7 Days', '');
+('68D6CA0E436C2', 'Desloratadin', '5mg', '1+1+1', '7 Days', ''),
+('68D808770F678', 'Pantonix', '20mg', '1+0+1', '7 Days', 'Before Meal'),
+('68D808770F678', 'Cefixime', '500mg', '1+0+1', '7 Days', 'After Meal');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbltimes`
+--
+
+CREATE TABLE `tbltimes` (
+  `id` int NOT NULL,
+  `doctor_id` int NOT NULL,
+  `t_from` time(6) NOT NULL,
+  `t_to` time(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tbltimes`
+--
+
+INSERT INTO `tbltimes` (`id`, `doctor_id`, `t_from`, `t_to`) VALUES
+(1, 53, '22:16:00.000000', '00:18:00.000000'),
+(3, 53, '10:30:00.000000', '12:00:00.000000');
 
 -- --------------------------------------------------------
 
@@ -518,7 +556,10 @@ INSERT INTO `userlog` (`id`, `uid`, `username`, `userip`, `loginTime`, `logout`,
 (59, 13, 'tamamabir@gmail.com', 0x3a3a3100000000000000000000000000, '2025-09-25 05:56:23', '25-09-2025 11:33:31 AM', 1),
 (60, 13, 'tamamabir@gmail.com', 0x3132372e302e302e3100000000000000, '2025-09-25 06:35:49', '25-09-2025 12:26:45 PM', 1),
 (61, 13, 'tamamabir@gmail.com', 0x3a3a3100000000000000000000000000, '2025-09-26 17:09:52', '26-09-2025 10:40:38 PM', 1),
-(62, 13, 'tamamabir@gmail.com', 0x3a3a3100000000000000000000000000, '2025-09-26 17:26:15', '26-09-2025 11:30:35 PM', 1);
+(62, 13, 'tamamabir@gmail.com', 0x3a3a3100000000000000000000000000, '2025-09-26 17:26:15', '26-09-2025 11:30:35 PM', 1),
+(63, 13, 'tamamabir@gmail.com', 0x3a3a3100000000000000000000000000, '2025-09-27 09:08:57', '27-09-2025 02:40:10 PM', 1),
+(64, 13, 'tamamabir@gmail.com', 0x3a3a3100000000000000000000000000, '2025-09-27 15:50:41', '27-09-2025 09:21:04 PM', 1),
+(65, 13, 'tamamabir@gmail.com', 0x3a3a3100000000000000000000000000, '2025-09-28 03:19:37', '28-09-2025 09:17:44 AM', 1);
 
 -- --------------------------------------------------------
 
@@ -622,6 +663,12 @@ ALTER TABLE `tblprescriptions`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbltimes`
+--
+ALTER TABLE `tbltimes`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `userlog`
 --
 ALTER TABLE `userlog`
@@ -648,19 +695,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `doctorslog`
 --
 ALTER TABLE `doctorslog`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `doctorspecilization`
@@ -690,19 +737,25 @@ ALTER TABLE `tblpage`
 -- AUTO_INCREMENT for table `tblpatient`
 --
 ALTER TABLE `tblpatient`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `tblprescriptions`
 --
 ALTER TABLE `tblprescriptions`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tbltimes`
+--
+ALTER TABLE `tbltimes`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `userlog`
 --
 ALTER TABLE `userlog`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `users`
